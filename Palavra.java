@@ -48,7 +48,7 @@ public class Palavra implements Comparable<Palavra>
 				
 				lis[j] = k;
 				j++;
-				System.out.printf("Achou na posíção: %3d \n", k);
+				//System.out.printf("Achou na posíção: %3d \n", k);
 			}
 			
 			
@@ -104,20 +104,21 @@ public class Palavra implements Comparable<Palavra>
     	
     }
 
+	@Override
     public int hashCode ()
     {
         // calcular e retornar o hashcode de this
     	int ret = 1982;
     	
-    	ret = 13*ret + this.getTamanho();
-    	
-    	ret = 13*ret + this.hashCode();
-    	
+    	if (this.texto != null) ret = 7*ret + this.texto.hashCode();
+
+		if (ret < 0) ret = -ret;
+
     	return ret;
     }
 
     public int compareTo (Palavra palavra)
     {
-        return this.texto.compareTo(palavra.texto);
+		return this.texto.compareTo(palavra.texto);
     }
 }
