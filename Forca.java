@@ -3,20 +3,19 @@ import java.io.IOException;
 
 public class Forca
 {
+	static String mess = "";
     public static void main (String args []) throws InterruptedException, IOException
     {
         char continuar = ' ';
 		Forca f = new Forca();
+		
 
         do
         {			
 			f.Tela();
-
-
-			Palavra palavra =
-			BancoDePalavras.getPalavraSorteada();
-			
+			Palavra palavra = BancoDePalavras.getPalavraSorteada();
 			Tracinhos tracinhos = null;
+
 			try
 			{
 			    tracinhos = new Tracinhos (palavra.getTamanho());
@@ -39,11 +38,12 @@ public class Forca
 			while (tracinhos.isAindaComTracinhos() && 
 				!controladorDeErros.isAtingidoMaximoDeErros())
 			{
-				
+				f.Tela();
 				System.out.println ("\t\t Palavra...: "+tracinhos);
 				System.out.println ("\t\t Digitadas.: "+controladorDeLetrasJaDigitadas);
 				System.out.println ("\t\t Erros.....: "+controladorDeErros);
-
+				System.out.println (mess);
+				mess = "";
 				try
 				{
 					System.out.print   ("\t\t Qual letra? ");
@@ -51,7 +51,9 @@ public class Forca
 
 					if (controladorDeLetrasJaDigitadas.isJaDigitada (letra))
 					{
-						System.err.println ("\tEssa letra ja foi digitada!\n");
+						mess = "\t\t Essa letra ja foi digitada!"; 
+						//System.err.println ("\n\n\t\t Essa letra ja foi digitada!\n");
+						System.err.println (mess);
 						//System.in.read();
 					}
 					else
@@ -62,7 +64,8 @@ public class Forca
 
 						if (qtd==0)
 						{
-							System.err.println ("\tA palavra nao tem essa letra!\n");
+							mess = "\t\t A palavra nao tem essa letra!";
+							System.err.println (mess);
 							controladorDeErros.registreUmErro ();
 							//System.out.println ();
 						}
@@ -84,24 +87,24 @@ public class Forca
 			}
 
 			if (controladorDeErros.isAtingidoMaximoDeErros ())
-				System.out.println ("\tQue pena! Voce perdeu! A palavra era "+palavra+"\n");
+				System.out.println ("\t\t Que pena! Voce perdeu! A palavra era "+palavra+"\n");
 			else // !tracinhos.isAindaComTracinhos()
-				System.out.println ("\tParabens! Voce ganhou! A palavra era mesmo "+palavra+"\n");
+				System.out.println ("\t\t Parabens! Voce ganhou! A palavra era mesmo "+palavra+"\n");
 
 			for(;;)
 			{
 				try
 				{
-					System.out.print ("\tDeseja jogar de novo (S/N)? ");
+					System.out.print ("\t\t Deseja jogar de novo (S/N)? ");
 					continuar = Character.toUpperCase (Teclado.getUmChar());
 					if (continuar!='S' && continuar!='N')
-						System.err.println ("\tOpcao invalida! Tente novamente...");
+						System.err.println ("\t\t Opcao invalida! Tente novamente...");
 					else
 						break;
 				}
 				catch (Exception erro)
 				{
-					System.err.println ("\tOpcao invalida! Tente novamente...");
+					System.err.println ("\t\t Opcao invalida! Tente novamente...");
 					//System.in.read();
 				}
 			}
@@ -123,5 +126,6 @@ public class Forca
 		System.out.println("\t\t**************************************************************************************");
 		System.out.println("\t\t*****************************" + ANSI_YELLOW + "BEM VINDO AO JOGO DA FORCA" + ANSI_RESET + "*******************************");
 		System.out.println("\t\t**************************************************************************************");
+		//System.err.println("Teste");
 	}
 }
