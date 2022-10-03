@@ -3,6 +3,10 @@ import java.io.IOException;
 
 public class Forca
 {
+	final static String ANSI_RESET = "\u001B[0m";
+	final String ANSI_YELLOW = "\u001B[33m";
+	final static String ANSI_RED = "\u001B[31m";
+	final static String ANSI_BLUE = "\u001B[34m";
 	static String mess = "";
     public static void main (String args []) throws InterruptedException, IOException
     {
@@ -46,7 +50,7 @@ public class Forca
 				mess = "";
 				try
 				{
-					System.out.print   ("\t\t Qual letra? ");
+					System.out.print   (ANSI_BLUE + "\t\t Qual letra? " + ANSI_RESET);
 					char letra = Character.toUpperCase (Teclado.getUmChar());
 
 					if (controladorDeLetrasJaDigitadas.isJaDigitada (letra))
@@ -58,16 +62,21 @@ public class Forca
 					}
 					else
 					{
+						
 						controladorDeLetrasJaDigitadas.registre (letra);
 
 						int qtd = palavra.getQuantidade (letra);
 
 						if (qtd==0)
 						{
+							//String teste = "";
 							mess = "\t\t A palavra nao tem essa letra!";
 							System.err.println (mess);
 							controladorDeErros.registreUmErro ();
 							//System.out.println ();
+							//teste = ANSI_RED + letra;
+							//letra = teste.charAt(10);
+							
 						}
 						else
 						{
@@ -78,6 +87,7 @@ public class Forca
 							}
 							System.out.println ();
 						}
+						//controladorDeLetrasJaDigitadas.registre (letra);
 					}
 				}
 				catch (Exception erro)
@@ -114,8 +124,7 @@ public class Forca
 
 	public void Tela() throws InterruptedException, IOException {
 
-		final String ANSI_RESET = "\u001B[0m";
-		final String ANSI_YELLOW = "\u001B[33m";
+		
 
 
 		if (System.getProperty("os.name").contains("Windows"))
@@ -123,9 +132,9 @@ public class Forca
 		else
 			Runtime.getRuntime().exec("clear");
 		
-		System.out.println("\t\t**************************************************************************************");
-		System.out.println("\t\t*****************************" + ANSI_YELLOW + "BEM VINDO AO JOGO DA FORCA" + ANSI_RESET + "*******************************");
-		System.out.println("\t\t**************************************************************************************");
+		System.out.println("\t\t" + ANSI_BLUE + "**************************************************************************************" + ANSI_RESET);
+		System.out.println("\t\t" + ANSI_BLUE + "*****************************" + ANSI_RESET + ANSI_YELLOW + "BEM VINDO AO JOGO DA FORCA" + ANSI_BLUE + "*******************************" + ANSI_RESET);
+		System.out.println("\t\t" + ANSI_BLUE + "**************************************************************************************" + ANSI_RESET);
 		//System.err.println("Teste");
 	}
 }

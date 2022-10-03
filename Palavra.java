@@ -7,7 +7,7 @@ public class Palavra implements Comparable<Palavra>
 		// verifica se o texto recebido é nulo ou então vazio,
 		// ou seja, sem nenhum caractere, lançando exceção.
 		// armazena o texto recebido em this.texto.
-    	if(texto == null || texto.isBlank()) throw new Exception ("Por favor, entre com um texto válido!");
+    	if(texto == null || texto.isEmpty()) throw new Exception ("Por favor, entre com um texto válido!");
     	
     	this.texto = texto;
     	
