@@ -1,3 +1,5 @@
+package forca;
+
 public class ControladorDeLetrasJaDigitadas implements Cloneable
 {
     private String letrasJaDigitadas;

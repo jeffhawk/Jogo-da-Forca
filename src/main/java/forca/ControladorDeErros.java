@@ -1,3 +1,5 @@
+package forca;
+
 public class ControladorDeErros implements Cloneable
 {
     private int qtdMax, qtdErr=0;

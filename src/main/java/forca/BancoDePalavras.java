@@ -1,3 +1,5 @@
+package forca;
+
 public class BancoDePalavras
 {
     private static String[] palavras = 

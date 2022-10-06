@@ -1,4 +1,5 @@
-import java.io.*;
+package forca;
+
 import java.io.IOException;
 
 public class Forca

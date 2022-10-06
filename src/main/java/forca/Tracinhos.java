@@ -1,3 +1,5 @@
+package forca;
+
 public class Tracinhos implements Cloneable
 {
     private char texto [];

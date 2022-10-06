@@ -1,3 +1,5 @@
+package forca;
+
 
 
 class TesteDePalavra
